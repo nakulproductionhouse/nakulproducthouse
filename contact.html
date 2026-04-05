@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="hi" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Contact Us | Nakul Production House (NPH)</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tenor+Sans&family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: { extend: { colors: { nph: { gold: '#C5A059', dark: '#050505' } }, fontFamily: { 'tenor': ['Tenor Sans', 'serif'], 'jost': ['Jost', 'sans-serif'] } } }
+        }
+    </script>
+    <style>
+        body { font-family: 'Jost', sans-serif; background-color: #050505; color: #E0E0E0; overflow-x: hidden; }
+        h1, h2, h3, h4 { font-family: 'Tenor Sans', serif; letter-spacing: 0.15em; text-transform: uppercase; }
+        
+        .gold-gradient { background: linear-gradient(135deg, #C5A059 0%, #F1D9A7 50%, #C5A059 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+
+        .contact-glass {
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(197, 160, 89, 0.15);
+            border-radius: 30px;
+        }
+
+        .input-field {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 15px;
+            width: 100%;
+            color: white;
+            outline: none;
+            transition: 0.3s;
+        }
+        .input-field:focus { border-color: #C5A059; background: rgba(197, 160, 89, 0.05); }
+
+        .info-card {
+            padding: 20px;
+            border-left: 2px solid #C5A059;
+            background: rgba(197, 160, 89, 0.03);
+            border-radius: 0 20px 20px 0;
+            transition: 0.3s;
+        }
+        .info-card:hover { background: rgba(197, 160, 89, 0.08); transform: translateX(10px); }
+
+        iframe { border-radius: 30px; filter: grayscale(1) invert(0.9) contrast(1.2); }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div id="nav-placeholder"></div>
+
+    <main class="pt-48 pb-32">
+        <header class="text-center mb-20 px-6">
+            <h1 class="text-4xl md:text-8xl gold-gradient font-bold mb-4">Get In Touch</h1>
+            <p class="text-zinc-500 uppercase tracking-[0.5em] text-[10px]">Let's Discuss Your Imperial Vision</p>
+        </header>
+
+        <div class="max-w-[1400px] mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-16">
+            
+            <div class="space-y-12">
+                <div>
+                    <h2 class="text-2xl text-white mb-6">Contact Information</h2>
+                    <p class="text-zinc-400 leading-relaxed mb-10">Aapke special moments ko timeless banane ke liye hum hamesha taiyar hain. Aap niche diye gaye tarikon se humse jud sakte hain.</p>
+                </div>
+
+                <div class="space-y-6">
+                    <a href="tel:8130126856" class="info-card flex items-center gap-6 group">
+                        <div class="text-3xl text-nph-gold"><i class="fa-solid fa-phone-volume"></i></div>
+                        <div>
+                            <h4 class="text-xs text-zinc-500 uppercase tracking-widest font-bold">Call Us</h4>
+                            <p class="text-xl text-white group-hover:text-nph-gold transition">+91 8130 126 856</p>
+                        </div>
+                    </a>
+
+                    <a href="https://wa.me/8130126856" class="info-card flex items-center gap-6 group">
+                        <div class="text-3xl text-green-500"><i class="fa-brands fa-whatsapp"></i></div>
+                        <div>
+                            <h4 class="text-xs text-zinc-500 uppercase tracking-widest font-bold">WhatsApp</h4>
+                            <p class="text-xl text-white group-hover:text-green-500 transition">Instant Message</p>
+                        </div>
+                    </a>
+
+                    <a href="mailto:nakuljvv4@gmail.com" class="info-card flex items-center gap-6 group">
+                        <div class="text-3xl text-nph-gold"><i class="fa-solid fa-envelope-open-text"></i></div>
+                        <div>
+                            <h4 class="text-xs text-zinc-500 uppercase tracking-widest font-bold">Email Address</h4>
+                            <p class="text-xl text-white group-hover:text-nph-gold transition">nakuljvv4@gmail.com</p>
+                        </div>
+                    </a>
+
+                    <div class="info-card flex items-center gap-6 group">
+                        <div class="text-3xl text-nph-gold"><i class="fa-solid fa-location-dot"></i></div>
+                        <div>
+                            <h4 class="text-xs text-zinc-500 uppercase tracking-widest font-bold">Our Studio</h4>
+                            <p class="text-xl text-white">Vasant Kunj, New Delhi, India</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pt-10 flex gap-8 text-2xl text-zinc-600">
+                    <a href="#" class="hover:text-nph-gold transition"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" class="hover:text-nph-gold transition"><i class="fa-brands fa-youtube"></i></a>
+                    <a href="#" class="hover:text-nph-gold transition"><i class="fa-brands fa-facebook"></i></a>
+                </div>
+            </div>
+
+            <div class="contact-glass p-8 md:p-12">
+                <h3 class="text-2xl text-white mb-2">Send a Message</h3>
+                <p class="text-zinc-500 text-xs uppercase tracking-widest mb-10">We respond within 24 hours</p>
+
+                <form id="contactForm" class="space-y-6" onsubmit="sendContactInquiry(event)">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <input type="text" id="name" placeholder="Your Name" required class="input-field">
+                        <input type="tel" id="phone" placeholder="Phone Number" required class="input-field">
+                    </div>
+                    <input type="email" id="email" placeholder="Email Address" required class="input-field">
+                    <select id="service" class="input-field cursor-pointer">
+                        <option value="Wedding Cinema">Wedding Cinema</option>
+                        <option value="Pre-Wedding">Pre-Wedding Shoot</option>
+                        <option value="Destination Wedding">Destination Wedding</option>
+                        <option value="Special Event">Other Special Event</option>
+                    </select>
+                    <textarea id="message" placeholder="Tell us about your event..." rows="5" class="input-field"></textarea>
+                    
+                    <button type="submit" class="w-full bg-nph-gold text-black py-5 rounded-full font-bold uppercase text-xs tracking-[0.3em] hover:bg-white transition-all shadow-xl shadow-nph-gold/10">
+                        Submit Royal Inquiry
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <div class="max-w-[1400px] mx-auto px-6 mt-32">
+            <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d112130.40484795293!2d77.06733224716797!3d28.53551609999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d1916960d7c5b%3A0xc67f70757a06a2e4!2sVasant%20Kunj%2C%20New%20Delhi%2C%20Delhi!5e0!3m2!1sen!2sin!4v1708800000000!5m2!1sen!2sin" 
+                width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy">
+            </iframe>
+        </div>
+    </main>
+
+    <div id="footer-placeholder"></div>
+
+    <script src="components.js"></script>
+    <script>
+        function sendContactInquiry(e) {
+            e.preventDefault();
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+            const email = document.getElementById('email').value;
+            const service = document.getElementById('service').value;
+            const msg = document.getElementById('message').value;
+
+            const whatsappNumber = "8130126856";
+            const fullMessage = `*New Inquiry from Contact Page*%0A%0A` +
+                                `*Name:* ${name}%0A` +
+                                `*Phone:* ${phone}%0A` +
+                                `*Email:* ${email}%0A` +
+                                `*Service:* ${service}%0A` +
+                                `*Note:* ${msg}`;
+
+            // 1. WhatsApp Redirection
+            window.open(`https://wa.me/${whatsappNumber}?text=${fullMessage}`, '_blank');
+
+            // 2. Email Redirection
+            const mailtoLink = `mailto:nakuljvv4@gmail.com?subject=Contact Inquiry: ${service}&body=${fullMessage.replace(/%0A/g, '\n')}`;
+            window.location.href = mailtoLink;
+
+            alert("Thank you! Your inquiry details are being sent via WhatsApp and Email.");
+        }
+    </script>
+</body>
+</html>

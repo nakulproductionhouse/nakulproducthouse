@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="hi" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <title>Services | NPH - Cinematic Studio</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tenor+Sans&family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: { extend: { colors: { nph: { gold: '#C5A059', dark: '#050505' } }, fontFamily: { 'tenor': ['Tenor Sans', 'serif'], 'jost': ['Jost', 'sans-serif'] } } }
+        }
+    </script>
+    <style>
+        body { font-family: 'Jost', sans-serif; background-color: #050505; color: #E0E0E0; overflow-x: hidden; }
+        h1, h2, h3, h4 { font-family: 'Tenor Sans', serif; letter-spacing: 0.15em; text-transform: uppercase; }
+        
+        .gold-gradient { background: linear-gradient(135deg, #C5A059 0%, #F1D9A7 50%, #C5A059 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+
+        /* CARD CORE STYLE */
+        .service-card {
+            position: relative;
+            height: 480px;
+            border-radius: 24px;
+            overflow: hidden;
+            border: 1px solid rgba(197, 160, 89, 0.2);
+            transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+            cursor: pointer;
+        }
+
+        .card-img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.4;
+            transition: transform 0.8s ease, opacity 0.5s ease;
+        }
+
+        .card-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(5,5,5,1) 0%, rgba(5,5,5,0.7) 40%, transparent 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 2rem;
+            z-index: 10;
+        }
+
+        /* DESKTOP HOVER LOGIC (Mouse Users) */
+        @media (min-width: 1024px) {
+            .card-detail {
+                max-height: 0;
+                opacity: 0;
+                transition: all 0.5s ease;
+                overflow: hidden;
+            }
+            .service-card:hover .card-detail {
+                max-height: 100px;
+                opacity: 1;
+                margin-bottom: 1rem;
+            }
+            .service-card:hover {
+                border-color: #C5A059;
+                transform: translateY(-10px);
+            }
+            .service-card:hover .card-img {
+                transform: scale(1.1);
+                opacity: 0.6;
+            }
+        }
+
+        /* MOBILE LOGIC (Hamesha dikhega) */
+        @media (max-width: 1023px) {
+            .card-detail {
+                opacity: 1;
+                margin-bottom: 1rem;
+                display: block;
+            }
+            .service-card {
+                height: 420px; /* Thoda chota mobile ke liye */
+                border-color: rgba(197, 160, 89, 0.4);
+            }
+            .card-img { opacity: 0.5; }
+        }
+
+        .art-pill {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(197, 160, 89, 0.1);
+            padding: 1.5rem;
+            border-radius: 20px;
+            text-align: center;
+            transition: 0.4s;
+            cursor: pointer;
+        }
+        .art-pill:hover { border-color: #C5A059; background: rgba(197, 160, 89, 0.05); }
+
+        #art-modal { display: none; background: rgba(0,0,0,0.9); backdrop-filter: blur(15px); }
+        .modal-box { background: #080808; border: 1px solid #C5A059; border-radius: 30px; width: 90%; max-width: 600px; padding: 2.5rem; }
+
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div id="nav-placeholder"></div>
+
+    <main class="pt-40 pb-32">
+        <header class="text-center mb-16 px-6">
+            <h1 class="text-4xl md:text-8xl gold-gradient font-bold mb-4">Our Services</h1>
+            <p class="text-zinc-500 uppercase tracking-[0.5em] text-[9px]">Luxury Cinema • Trusted Experience</p>
+        </header>
+
+        <div class="max-w-[1500px] mx-auto px-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            
+            <div class="service-card" onclick="location.href='packages.html?cat=wedding'">
+                <img src="assets/photos/services/wedding.jpg" class="card-img" alt="Wedding">
+                <div class="card-overlay">
+                    <h4 class="text-nph-gold text-[10px] mb-2 font-bold tracking-widest uppercase">Shahi Celebration</h4>
+                    <h3 class="text-2xl text-white font-tenor mb-2">Wedding Cinema</h3>
+                    <p class="card-detail text-zinc-400 text-xs leading-relaxed">Aapki shadi ko ek film ki tarah shoot karte hain high-end cameras aur lighting ke saath.</p>
+                    <span class="text-white text-[10px] font-bold uppercase tracking-widest border-b border-nph-gold pb-1 w-fit">Inquire Plan &rarr;</span>
+                </div>
+            </div>
+
+            <div class="service-card" onclick="location.href='packages.html?cat=prewedding'">
+                <img src="assets/photos/services/prewedding.jpg" class="card-img" alt="Pre-Wedding">
+                <div class="card-overlay">
+                    <h4 class="text-nph-gold text-[10px] mb-2 font-bold tracking-widest uppercase">Romantic Tales</h4>
+                    <h3 class="text-2xl text-white font-tenor mb-2">Pre-Wedding</h3>
+                    <p class="card-detail text-zinc-400 text-xs leading-relaxed">Destination locations par cinematic pre-wedding films jismein drone shots bhi shamil hain.</p>
+                    <span class="text-white text-[10px] font-bold uppercase tracking-widest border-b border-nph-gold pb-1 w-fit">Explore Locations &rarr;</span>
+                </div>
+            </div>
+
+            <div class="service-card" onclick="location.href='packages.html?cat=destination'">
+                <img src="assets/photos/services/destination.jpg" class="card-img" alt="Destination">
+                <div class="card-overlay">
+                    <h4 class="text-nph-gold text-[10px] mb-2 font-bold tracking-widest uppercase">Global Memories</h4>
+                    <h3 class="text-2xl text-white font-tenor mb-2">Destination Wedding</h3>
+                    <p class="card-detail text-zinc-400 text-xs leading-relaxed">Duniya bhar mein kahin bhi, hamari team puri kit ke saath royal coverage ke liye taiyar hai.</p>
+                    <span class="text-white text-[10px] font-bold uppercase tracking-widest border-b border-nph-gold pb-1 w-fit">Travel Plans &rarr;</span>
+                </div>
+            </div>
+
+            <div class="service-card" onclick="location.href='packages.html?cat=custom'">
+                <img src="assets/photos/services/birthday.jpg" class="card-img" alt="Birthday">
+                <div class="card-overlay">
+                    <h4 class="text-nph-gold text-[10px] mb-2 font-bold tracking-widest uppercase">Joyful Moments</h4>
+                    <h3 class="text-2xl text-white font-tenor mb-2">Birthday Party</h3>
+                    <p class="card-detail text-zinc-400 text-xs leading-relaxed">Baccho ki ya badon ki, birthday ki har ek masti aur cake cutting ko cinematic banate hain.</p>
+                    <span class="text-white text-[10px] font-bold uppercase tracking-widest border-b border-nph-gold pb-1 w-fit">Book Event &rarr;</span>
+                </div>
+            </div>
+
+            <div class="service-card" onclick="location.href='packages.html?cat=custom'">
+                <img src="assets/photos/services/engagement.jpg" class="card-img" alt="Engagement">
+                <div class="card-overlay">
+                    <h4 class="text-nph-gold text-[10px] mb-2 font-bold tracking-widest uppercase">The Beginning</h4>
+                    <h3 class="text-2xl text-white font-tenor mb-2">Engagement</h3>
+                    <p class="card-detail text-zinc-400 text-xs leading-relaxed">Ring ceremony aur family gathering ki exclusive artistic photography.</p>
+                    <span class="text-white text-[10px] font-bold uppercase tracking-widest border-b border-nph-gold pb-1 w-fit">Select Package &rarr;</span>
+                </div>
+            </div>
+
+            <div class="service-card" onclick="location.href='packages.html?cat=custom'">
+                <img src="assets/photos/services/retirement.jpg" class="card-img" alt="Retirement">
+                <div class="card-overlay">
+                    <h4 class="text-nph-gold text-[10px] mb-2 font-bold tracking-widest uppercase">A New Chapter</h4>
+                    <h3 class="text-2xl text-white font-tenor mb-2">Retirement</h3>
+                    <p class="card-detail text-zinc-400 text-xs leading-relaxed">Life ki second inning ki shuruaat ko ek sammanjanak aur khubsurat tarike se record karna.</p>
+                    <span class="text-white text-[10px] font-bold uppercase tracking-widest border-b border-nph-gold pb-1 w-fit">Inquire Now &rarr;</span>
+                </div>
+            </div>
+
+            <div class="service-card" onclick="location.href='packages.html?cat=custom'">
+                <img src="assets/photos/services/shows.jpg" class="card-img" alt="Shows">
+                <div class="card-overlay">
+                    <h4 class="text-nph-gold text-[10px] mb-2 font-bold tracking-widest uppercase">Grand Stage</h4>
+                    <h3 class="text-2xl text-white font-tenor mb-2">Event Shows</h3>
+                    <p class="card-detail text-zinc-400 text-xs leading-relaxed">Live music, concerts, ya stage shows ki multicam high-definition recording.</p>
+                    <span class="text-white text-[10px] font-bold uppercase tracking-widest border-b border-nph-gold pb-1 w-fit">Book Multi-Cam &rarr;</span>
+                </div>
+            </div>
+
+            <div class="service-card" style="border-style: dashed;" onclick="location.href='packages.html?cat=custom'">
+                <img src="assets/photos/services/custom.jpg" class="card-img" alt="Custom">
+                <div class="card-overlay">
+                    <h4 class="text-nph-gold text-[10px] mb-2 font-bold tracking-widest uppercase">Tailor Made</h4>
+                    <h3 class="text-2xl text-white font-tenor mb-2">Customise Plan</h3>
+                    <p class="card-detail text-zinc-400 text-xs leading-relaxed">Aap apni marzi se camera aur din select karein, hum aapke budget ke hisab se plan denge.</p>
+                    <span class="text-nph-gold text-[10px] font-bold uppercase tracking-widest border border-nph-gold px-3 py-1 rounded-full">Build Plan &rarr;</span>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="max-w-[1500px] mx-auto px-6 mt-32">
+            <h2 class="text-2xl gold-gradient text-center mb-12 font-bold uppercase tracking-widest">Artistic Styles</h2>
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+                <div class="art-pill" onclick="showDetail('trad')">
+                    <i class="fa-solid fa-camera text-nph-gold mb-2 text-lg"></i>
+                    <h5 class="text-white text-[10px] font-bold tracking-widest">Traditional Photo</h5>
+                </div>
+                <div class="art-pill" onclick="showDetail('story')">
+                    <i class="fa-solid fa-clapperboard text-nph-gold mb-2 text-lg"></i>
+                    <h5 class="text-white text-[10px] font-bold tracking-widest">Story Video</h5>
+                </div>
+                <div class="art-pill" onclick="showDetail('cine')">
+                    <i class="fa-solid fa-film text-nph-gold mb-2 text-lg"></i>
+                    <h5 class="text-white text-[10px] font-bold tracking-widest">Cinematic Video</h5>
+                </div>
+                <div class="art-pill" onclick="showDetail('candid')">
+                    <i class="fa-solid fa-face-smile text-nph-gold mb-2 text-lg"></i>
+                    <h5 class="text-white text-[10px] font-bold tracking-widest">Candid Photo</h5>
+                </div>
+                <div class="art-pill" onclick="showDetail('drone')">
+                    <i class="fa-solid fa-plane-up text-nph-gold mb-2 text-lg"></i>
+                    <h5 class="text-white text-[10px] font-bold tracking-widest">Drone Coverage</h5>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div id="art-modal" class="fixed inset-0 z-[10001] flex items-center justify-center p-4">
+        <div class="modal-box relative text-center">
+            <button onclick="closeModal()" class="absolute top-6 right-6 text-2xl text-zinc-500 hover:text-white">&times;</button>
+            <div id="modal-content"></div>
+            <button onclick="closeModal()" class="mt-10 w-full bg-nph-gold text-black py-3 rounded-full font-bold uppercase text-[10px] tracking-widest hover:bg-white transition">Close</button>
+        </div>
+    </div>
+
+    <div id="footer-placeholder"></div>
+
+    <script src="components.js"></script>
+    <script>
+        const infoData = {
+            trad: { t: "Traditional Photo", d: "Core documentation style photography. Hum stage aur har guest ko capture karte hain taaki aapke paas sabka digital record ho." },
+            story: { t: "Story Video", d: "Puri shadi ki 2-3 ghante ki detailed movie. Ismein pooja se lekar vidai tak ki har rasam long version mein record hoti hai." },
+            cine: { t: "Cinematic Video", d: "4K Movie experience. Ismein high-end gimbals aur emotional music ka use karke shadi ko blockbuster film jaisa banaya jata hai." },
+            candid: { t: "Candid Photo", d: "Natural emotions capture karna bina pose karwaye. Jab aap has rahe hote hain ya sharma rahe hote hain, hum tab shots lete hain." },
+            drone: { t: "Drone Coverage", d: "Aerial bird-eye view. Aapke grand venue aur entry ko asmaan se capture karna jo aapki film ko grand royal look deta hai." }
+        };
+
+        function showDetail(key) {
+            const m = document.getElementById('art-modal');
+            const c = document.getElementById('modal-content');
+            c.innerHTML = `<h2 class="text-2xl gold-gradient mb-4 font-tenor italic">${infoData[key].t}</h2><p class="text-zinc-400 text-sm leading-relaxed">${infoData[key].d}</p>`;
+            m.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+        function closeModal() { document.getElementById('art-modal').style.display = 'none'; document.body.style.overflow = 'auto'; }
+    </script>
+</body>
+</html>

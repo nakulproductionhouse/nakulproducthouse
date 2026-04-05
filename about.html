@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="hi" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>The Studio & Team | NPH Royal House</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tenor+Sans&family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: { extend: { colors: { nph: { gold: '#C5A059', dark: '#050505' } }, fontFamily: { 'tenor': ['Tenor Sans', 'serif'], 'jost': ['Jost', 'sans-serif'] } } }
+        }
+    </script>
+    <style>
+        body { font-family: 'Jost', sans-serif; background-color: #050505; color: #E0E0E0; overflow-x: hidden; }
+        h1, h2, h3, h4 { font-family: 'Tenor Sans', serif; letter-spacing: 0.15em; text-transform: uppercase; }
+        
+        .gold-gradient { background: linear-gradient(135deg, #C5A059 0%, #F1D9A7 50%, #C5A059 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+
+        /* Cinematic Hero */
+        .studio-hero {
+            height: 90vh;
+            background: linear-gradient(to bottom, rgba(5,5,5,0.1), rgba(5,5,5,1)), url('assets/photos/studio/hero_wide.jpg');
+            background-size: cover; background-position: center;
+            display: flex; align-items: center; justify-content: center; text-align: center;
+        }
+
+        /* Team Card Style */
+        .team-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(197, 160, 89, 0.1);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: 0.5s cubic-bezier(0.2, 1, 0.3, 1);
+        }
+        .team-card:hover { border-color: #C5A059; transform: translateY(-10px); }
+        .team-img { height: 350px; width: 100%; overflow: hidden; position: relative; }
+        .team-img img { width: 100%; height: 100%; object-fit: cover; transition: 0.8s; filter: grayscale(0.5); }
+        .team-card:hover .team-img img { transform: scale(1.1); filter: grayscale(0); }
+
+        .team-overlay {
+            position: absolute; inset: 0;
+            background: linear-gradient(to top, #050505 0%, transparent 60%);
+        }
+
+        /* Decorative Elements */
+        .line-art { width: 100px; height: 1px; background: #C5A059; margin: 20px auto; opacity: 0.5; }
+        
+        .scroll-reveal { opacity: 0; transform: translateY(40px); transition: all 1s ease-out; }
+        .is-visible { opacity: 1; transform: translateY(0); }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div id="nav-placeholder"></div>
+
+    <section class="studio-hero">
+        <div class="px-6 max-w-4xl">
+            <h4 class="text-nph-gold tracking-[0.8em] text-[10px] mb-6 font-bold uppercase">Legacy of Visual Arts</h4>
+            <h1 class="text-6xl md:text-9xl gold-gradient font-bold mb-8">NPH </h1>
+            <div class="line-art"></div>
+            <p class="text-zinc-400 text-lg md:text-xl font-light tracking-wide uppercase">Where Dreams Meet Cinema</p>
+        </div>
+    </section>
+
+    <main class="max-w-[1400px] mx-auto px-6 py-24">
+        
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center mb-40 scroll-reveal">
+            <div class="relative">
+                <img src="assets/photos/studio/founder.jpg" class="rounded-[2rem] border border-white/10 shadow-2xl" alt="Founder">
+                <div class="absolute -bottom-10 -right-10 hidden md:block bg-nph-gold p-8 rounded-2xl text-black">
+                    <span class="text-4xl font-bold">5+</span>
+                    <p class="text-[10px] font-bold uppercase tracking-widest">Years Experience</p>
+                </div>
+            </div>
+            <div class="space-y-8">
+                <h2 class="text-4xl text-white font-tenor">Our <span class="gold-gradient italic">Philosophy</span></h2>
+                <p class="text-zinc-400 text-lg leading-relaxed">Ek frame sirf ek tasveer nahi hoti, wo us pal ka ehsaas hoti hai jo dobara kabhi nahi aayega. Nakul Production House mein hum sirf camera nahi chalate, hum jazbaaton ko mehsoos karte hain.</p>
+                <p class="text-zinc-400 text-lg leading-relaxed">Hamara har shot ek "Director's Vision" se liya jata hai. Hum chaos ke beech mein se wo choti si muskurahat dhoondte hain jo aapki shadi ki sabse badi yaas ban jati hai.</p>
+                <div class="pt-4">
+                    <p class="text-nph-gold font-tenor text-2xl tracking-widest">- Nakul <span class="text-zinc-600 text-sm">/ Founder</span></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mb-40 border-y border-white/5 py-20 scroll-reveal">
+            <div class="text-center">
+                <h3 class="text-4xl gold-gradient font-bold mb-2">100+</h3>
+                <p class="text-[10px] text-zinc-500 uppercase tracking-widest">Weddings Shot</p>
+            </div>
+            <div class="text-center">
+                <h3 class="text-4xl gold-gradient font-bold mb-2">12+</h3>
+                <p class="text-[10px] text-zinc-500 uppercase tracking-widest">States Travelled</p>
+            </div>
+            <div class="text-center">
+                <h3 class="text-4xl gold-gradient font-bold mb-2">20+</h3>
+                <p class="text-[10px] text-zinc-500 uppercase tracking-widest">Professional Crew</p>
+            </div>
+            <div class="text-center">
+                <h3 class="text-4xl gold-gradient font-bold mb-2">4K</h3>
+                <p class="text-[10px] text-zinc-500 uppercase tracking-widest">Cinema Grade</p>
+            </div>
+        </div>
+
+        <section class="mb-40">
+            <div class="text-center mb-20 scroll-reveal">
+                <h2 class="text-4xl md:text-6xl text-white mb-4">Meet The <span class="gold-gradient italic">Elite Crew</span></h2>
+                <p class="text-zinc-500 uppercase tracking-[0.4em] text-[10px]">The Masters of Cinematic Storytelling</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="team-card scroll-reveal">
+                    <div class="team-img">
+                        <img src="assets/photos/team/cinematographer.jpg" alt="Lead Cinematographer">
+                        <div class="team-overlay"></div>
+                    </div>
+                    <div class="p-6 text-center">
+                        <h4 class="text-white text-lg font-tenor tracking-widest"> Cinematographer</h4>
+                        <p class="text-nph-gold text-[10px] uppercase font-bold mt-2">Lead Cinematographer</p>
+                    </div>
+                </div>
+
+                <div class="team-card scroll-reveal">
+                    <div class="team-img">
+                        <img src="assets/photos/team/editor.jpg" alt="Master Editor">
+                        <div class="team-overlay"></div>
+                    </div>
+                    <div class="p-6 text-center">
+                        <h4 class="text-white text-lg font-tenor tracking-widest">Colorist & Editor</h4>
+                        <p class="text-nph-gold text-[10px] uppercase font-bold mt-2">Colorist & Editor</p>
+                    </div>
+                </div>
+
+                <div class="team-card scroll-reveal">
+                    <div class="team-img">
+                        <img src="assets/photos/team/candid.jpg" alt="Candid Specialist">
+                        <div class="team-overlay"></div>
+                    </div>
+                    <div class="p-6 text-center">
+                        <h4 class="text-white text-lg font-tenor tracking-widest">Candid Specialist</h4>
+                        <p class="text-nph-gold text-[10px] uppercase font-bold mt-2">Candid Specialist</p>
+                    </div>
+                </div>
+
+                <div class="team-card scroll-reveal">
+                    <div class="team-img">
+                        <img src="assets/photos/team/drone.jpg" alt="Drone Expert">
+                        <div class="team-overlay"></div>
+                    </div>
+                    <div class="p-6 text-center">
+                        <h4 class="text-white text-lg font-tenor tracking-widest">Nakul Rajput</h4>
+                        <p class="text-nph-gold text-[10px] uppercase font-bold mt-2">Aerial Drone Pilot</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="relative py-32 px-10 text-center rounded-[3rem] overflow-hidden scroll-reveal">
+            <div class="absolute inset-0 bg-fixed bg-center bg-cover opacity-20" style="background-image: url('assets/photos/studio/gear.jpg');"></div>
+            <div class="relative z-10 space-y-6">
+                <h3 class="text-3xl md:text-5xl text-white uppercase tracking-tighter">Ready to Experience <br> <span class="gold-gradient font-bold italic">The NPH Magic?</span></h3>
+                <p class="text-zinc-400 max-w-2xl mx-auto italic">"Aapka event hamari zimmedari hai, aur aapki yaadein hamari kalakari."</p>
+                <div class="pt-8">
+                    <a href="contact.html" class="bg-nph-gold text-black px-12 py-5 rounded-full font-bold uppercase text-xs tracking-widest hover:bg-white transition-all shadow-xl">Contact Nakul Now</a>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <div id="footer-placeholder"></div>
+
+    <script src="components.js"></script>
+    <script>
+        // Simple Scroll Reveal Logic
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.scroll-reveal').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>

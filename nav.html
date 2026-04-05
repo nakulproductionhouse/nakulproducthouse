@@ -1,0 +1,60 @@
+<style>
+    .water-glass {
+        background: rgba(255, 255, 255, 0.03);
+        backdrop-filter: blur(20px) saturate(180%);
+        -webkit-backdrop-filter: blur(20px) saturate(180%);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
+        transition: all 0.4s ease;
+    }
+    .compact-nav { height: 65px; }
+    .nav-link { transition: all 0.3s ease; position: relative; }
+    .nav-link.active { color: #C5A059 !important; font-weight: 700; }
+    .nav-link.active::after {
+        content: ''; position: absolute; bottom: -5px; left: 0; width: 100%; height: 2px; background: #C5A059; border-radius: 10px;
+    }
+    /* Hidden state jab menu open ho */
+    .nav-hidden { opacity: 0; pointer-events: none; transform: translateY(-20px); }
+</style>
+
+<nav class="fixed top-0 w-full z-[1000] py-4 px-4 md:px-10" id="main-nav">
+    <div class="max-w-[1700px] mx-auto flex justify-between items-center water-glass rounded-full px-6 md:px-10 compact-nav" id="nav-inner-container">
+        
+        <a href="index.html" class="flex items-center gap-3 group">
+            <span class="text-2xl md:text-3xl font-bold font-tenor text-nph-gold transition-transform group-hover:scale-110">NPH</span>
+            <div class="h-8 md:h-10 w-[1px] bg-white/10 hidden xs:block mx-1"></div>
+            <div class="flex flex-col hidden sm:flex">
+                <span class="text-xs md:text-sm font-semibold tracking-widest text-white uppercase leading-none">Nakul Production House</span>
+                <span class="text-[9px] text-nph-gold uppercase tracking-[0.3em] mt-1">Imperial Cinema</span>
+            </div>
+        </a>
+        
+        <div class="hidden xl:flex items-center gap-8 2xl:gap-12 text-[11px] uppercase tracking-widest font-medium text-zinc-300" id="nav-links">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="about.html" class="nav-link">Studio</a>
+            <a href="services.html" class="nav-link">Services</a>
+            <a href="portfolio.html" class="nav-link">Portfolio</a>
+            <a href="packages.html" class="nav-link">Packages</a>
+            <a href="contact.html" class="nav-link">Contact</a>
+        </div>
+
+        <div class="flex items-center gap-4">
+            <a href="contact.html" class="hidden md:flex bg-nph-gold text-nph-dark px-6 py-2.5 rounded-full text-[10px] font-bold uppercase tracking-widest hover:bg-white transition-all shadow-lg">Inquire</a>
+            <button onclick="toggleMobileMenu()" class="xl:hidden text-2xl text-white p-2 outline-none">
+                <i class="fa-solid fa-bars-staggered"></i>
+            </button>
+        </div>
+    </div>
+</nav>
+
+<div id="mobile-nav-overlay" class="fixed inset-0 bg-[#050505] z-[10001] flex flex-col justify-center items-center gap-8 text-2xl font-tenor uppercase hidden transform translate-x-full transition-transform duration-500">
+    <button onclick="toggleMobileMenu()" class="absolute top-10 right-10 text-5xl text-white outline-none">&times;</button>
+    <a href="index.html" class="mob-link">Home</a>
+    <a href="about.html" class="mob-link">Studio</a>
+    <a href="services.html" class="mob-link">Services</a>
+    <a href="portfolio.html" class="mob-link">Portfolio</a>
+    <a href="packages.html" class="mob-link">Packages</a>
+    <a href="contact.html" class="mob-link">Contact</a>
+    <div class="mt-10 h-[1px] w-20 bg-nph-gold/30"></div>
+    <p class="text-[10px] tracking-[0.4em] text-zinc-600">Nakul Production House</p>
+</div>

@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="hi" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Investment | NPH Royal Packages</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tenor+Sans&family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: { extend: { colors: { nph: { gold: '#C5A059', dark: '#050505' } }, fontFamily: { 'tenor': ['Tenor Sans', 'serif'], 'jost': ['Jost', 'sans-serif'] } } }
+        }
+    </script>
+    <style>
+        body { font-family: 'Jost', sans-serif; background-color: #050505; color: #E0E0E0; overflow-x: hidden; }
+        h1, h2, h3, h4 { font-family: 'Tenor Sans', serif; letter-spacing: 0.1em; text-transform: uppercase; }
+        
+        .water-glass-tabs { 
+            background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(25px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.12); box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
+        }
+
+        .filter-btn { padding: 12px 25px; border-radius: 50px; font-size: 11px; font-weight: 700; color: #888; transition: 0.4s; }
+        .filter-btn.active { color: #C5A059; background: rgba(197, 160, 89, 0.1); border: 1px solid #C5A059; }
+
+        .sub-pill { padding: 8px 20px; border-radius: 50px; border: 1px solid rgba(255, 255, 255, 0.1); font-size: 10px; color: #777; transition: 0.3s; cursor: pointer; }
+        .sub-pill.active { background: #C5A059; color: black; border-color: #C5A059; }
+
+        .package-row { 
+            background: rgba(255, 255, 255, 0.01); border: 1px solid rgba(197, 160, 89, 0.15); 
+            border-radius: 24px; display: flex; margin-bottom: 3rem; overflow: hidden; 
+            cursor: pointer; transition: 0.4s ease;
+        }
+        .package-row:hover { border-color: #C5A059; background: rgba(255, 255, 255, 0.03); }
+
+        .side-photo { width: 300px; border-right: 1px solid rgba(197, 160, 89, 0.1); background: #111; }
+        .side-photo img { width: 100%; height: 100%; object-fit: cover; opacity: 0.6; }
+
+        .content-area { flex: 1; padding: 2.5rem; display: flex; flex-direction: column; gap: 10px; }
+        .coverage-title { font-weight: 700; color: #fff; font-size: 15px; list-style: disc; margin-left: 20px; }
+        .coverage-subs { padding-left: 45px; margin-bottom: 15px; }
+        .coverage-subs li { list-style: circle; color: #aaa; font-size: 14px; margin-bottom: 4px; }
+        
+        .gold-text { background: linear-gradient(135deg, #C5A059 0%, #F1D9A7 50%, #C5A059 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+
+        /* Custom Estimator Style */
+        .day-box { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.08); border-radius: 24px; padding: 25px; margin-bottom: 25px; position: relative; }
+        .choice-label { display: block; background: #0a0a0a; border: 1px solid #333; padding: 12px; border-radius: 12px; cursor: pointer; text-align: center; font-size: 12px; transition: 0.3s; }
+        .choice-input { display: none; }
+        .choice-input:checked + .choice-label { border-color: #C5A059; background: rgba(197, 160, 89, 0.1); color: #C5A059; box-shadow: 0 0 15px rgba(197, 160, 89, 0.1); }
+
+        #query-modal { display: none; background: rgba(0,0,0,0.95); backdrop-filter: blur(15px); }
+        .modal-card { background: #0a0a0a; border: 1px solid #C5A059; box-shadow: 0 0 50px rgba(197, 160, 89, 0.2); }
+
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        @media (max-width: 900px) { 
+            .package-row { flex-direction: column; } 
+            .side-photo { width: 100%; height: 220px; } 
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div id="nav-placeholder"></div>
+
+    <main class="pt-44 pb-32">
+        <header class="text-center mb-12 px-6">
+            <h1 class="text-4xl md:text-7xl gold-text mb-4 uppercase font-tenor">Imperial Investment</h1>
+            <p class="text-zinc-500 uppercase tracking-[0.4em] text-[9px]">Nakul Production House</p>
+        </header>
+
+        <div class="sticky top-[85px] z-[900] px-4 mb-8">
+            <div class="max-w-5xl mx-auto water-glass-tabs rounded-full p-2 flex items-center overflow-x-auto no-scrollbar justify-between">
+                <button class="filter-btn active" onclick="switchMain('wedding', this)">Wedding</button>
+                <button class="filter-btn" onclick="switchMain('prewedding', this)">Pre-Wedding</button>
+                <button class="filter-btn" onclick="switchMain('destination', this)">Destination</button>
+                <button class="filter-btn" onclick="switchMain('custom', this)">Customise Plan</button>
+            </div>
+        </div>
+
+        <div id="sub-filter-bar" class="flex justify-center gap-3 mb-16 px-6 overflow-x-auto no-scrollbar"></div>
+        <div class="max-w-[1400px] mx-auto px-6" id="master-display"></div>
+    </main>
+
+    <div id="query-modal" class="fixed inset-0 z-[10001] flex items-center justify-center p-4">
+        <div class="modal-card w-full max-w-lg rounded-3xl p-8 relative">
+            <button onclick="closeModal()" class="absolute top-6 right-6 text-2xl text-zinc-500 hover:text-white">&times;</button>
+            <h2 class="text-2xl gold-text mb-2 font-tenor">Royal Inquiry</h2>
+            <p class="text-zinc-500 text-[10px] mb-8 uppercase tracking-widest" id="pkg-info-display"></p>
+            
+            <form id="inquiryForm" class="space-y-4" onsubmit="sendInquiry(event)">
+                <input type="text" id="custName" placeholder="Your Full Name" required class="w-full bg-zinc-900 border border-zinc-800 p-3 rounded-xl outline-none focus:border-nph-gold text-sm text-white">
+                <input type="tel" id="custPhone" placeholder="Contact Number" required class="w-full bg-zinc-900 border border-zinc-800 p-3 rounded-xl outline-none focus:border-nph-gold text-sm text-white">
+                <input type="email" id="custEmail" placeholder="Email Address" required class="w-full bg-zinc-900 border border-zinc-800 p-3 rounded-xl outline-none focus:border-nph-gold text-sm text-white">
+                <input type="text" id="eventDate" placeholder="Event Date (DD/MM/YYYY)" required class="w-full bg-zinc-900 border border-zinc-800 p-3 rounded-xl outline-none focus:border-nph-gold text-sm text-white">
+                <textarea id="custReq" placeholder="Special Requirements..." rows="3" class="w-full bg-zinc-900 border border-zinc-800 p-3 rounded-xl outline-none focus:border-nph-gold text-sm text-white"></textarea>
+                
+                <button type="submit" class="w-full bg-nph-gold text-black py-4 rounded-full font-bold uppercase text-xs tracking-widest hover:bg-white transition-all shadow-xl">Confirm & Send Details</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="footer-placeholder"></div>
+
+    <script src="components.js"></script>
+    <script>
+        const packageData = {
+            wedding: {
+                subs: ["Day 1", "Day 2", "Day 3", "Day 4"],
+                content: {
+                    "Day 1": [
+                        { name: "Wedding Basic", price: "15,000", img: "w1.jpg", cov: [{ t: "Wedding Coverage: (1+1)", items: ["Traditional Photography", "Story Videography"] }], extras: ["30 Sheet Album", "Edited Wedding Video"] }
+                    ],
+                    // ... Baaki data same rahega
+                }
+            },
+            // ... Baaki categories same rahengi
+        };
+    
+        let currentMain = 'wedding';
+        let selectedPackage = { name: '', price: '', details: '' };
+    
+        function switchMain(cat, btn) {
+            currentMain = cat;
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            if(cat === 'custom') { renderCustom(); return; }
+            renderSubs(cat);
+        }
+    
+        function renderSubs(cat) {
+            const bar = document.getElementById('sub-filter-bar');
+            bar.innerHTML = packageData[cat].subs.map((s, i) => `<button class="sub-pill ${i===0?'active':''}" onclick="renderContent('${cat}', '${s}', this)">${s}</button>`).join('');
+            renderContent(cat, packageData[cat].subs[0]);
+        }
+    
+        function renderContent(cat, sub, btn) {
+            if(btn) { document.querySelectorAll('.sub-pill').forEach(p => p.classList.remove('active')); btn.classList.add('active'); }
+            const display = document.getElementById('master-display');
+            const data = packageData[cat].content[sub];
+            display.innerHTML = data.map(p => `
+                <div class="package-row" onclick="openModal('${p.name}', '${p.price}', '${p.extras.join(", ")}')">
+                    <div class="side-photo"><img src="assets/photos/packages/${p.img}"></div>
+                    <div class="content-area">
+                        <h3 class="text-xl text-white font-bold">${p.name}</h3>
+                        <h4 class="text-2xl font-bold gold-text mb-4 italic">₹${p.price}</h4>
+                        <div class="border-b border-white/5 mb-4"></div>
+                        ${p.cov.map(c => `<div class="coverage-group"><li class="coverage-title">${c.t}</li><ul class="coverage-subs">${c.items.map(li => `<li>${li}</li>`).join('')}</ul></div>`).join('')}
+                        <ul class="extra-list">${p.extras.map(e => `<li>${e}</li>`).join('')}</ul>
+                    </div>
+                </div>
+            `).join('');
+        }
+    
+        function openModal(name, price, details = "") {
+            selectedPackage = { name, price, details };
+            document.getElementById('pkg-info-display').innerText = `Booking: ${name} (Est: ₹${price})`;
+            document.getElementById('query-modal').style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+    
+        function closeModal() {
+            document.getElementById('query-modal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+    
+        function sendInquiry(e) {
+            e.preventDefault();
+            const name = document.getElementById('custName').value;
+            const phone = document.getElementById('custPhone').value;
+            const email = document.getElementById('custEmail').value;
+            const date = document.getElementById('eventDate').value;
+            const req = document.getElementById('custReq').value;
+    
+            let breakdown = "";
+            if(currentMain === 'custom') {
+                const days = document.querySelectorAll('.day-box');
+                days.forEach((day, index) => {
+                    const eType = day.querySelector('select').value;
+                    const cName = day.querySelector('input[type="text"]').value;
+                    const event = eType === 'custom' ? cName : eType;
+                    let services = [];
+                    if(day.querySelector('[id^="tr"]').checked) services.push("Traditional Photo");
+                    if(day.querySelector('[id^="st"]').checked) services.push("Story Video");
+                    if(day.querySelector('[id^="ca"]').checked) services.push("Candid Photo");
+                    if(day.querySelector('[id^="ci"]').checked) services.push("Cinematic Video");
+                    if(day.querySelector('[id^="dr"]').checked) services.push("Drone Coverage");
+                    breakdown += `%0A- Day ${index+1} (${event}): ${services.join(", ")}`;
+                });
+                const editVal = document.getElementById('edit').value;
+                const editStatus = editVal > 0 ? "Included" : "None";
+                const alb = document.getElementById('albums').selectedOptions[0].text;
+                breakdown += `%0A- Editing: ${editStatus}%0A- Albums: ${alb}`;
+            } else {
+                breakdown = `%0A- Package Details: ${selectedPackage.details}`;
+            }
+    
+            const message = `*Imperial Inquiry - NPH*%0A%0A` +
+                            `*Package:* ${selectedPackage.name}%0A` +
+                            `*Total Estimate:* ₹${selectedPackage.price}%0A%0A` +
+                            `*Breakdown:* ${breakdown}%0A%0A` +
+                            `*Customer Info:*%0A- Name: ${name}%0A- Phone: ${phone}%0A- Email: ${email}%0A- Date: ${date}%0A- Requirements: ${req}`;
+    
+            // Fixed WhatsApp Redirection Link
+            window.open(`https://wa.me/918130126856?text=${message}`, '_blank');
+            closeModal();
+        }
+    
+        function renderCustom() {
+            document.getElementById('sub-filter-bar').innerHTML = "";
+            document.getElementById('master-display').innerHTML = `
+                <div class="max-w-4xl mx-auto water-glass-tabs p-6 md:p-10 rounded-[2.5rem] border border-nph-gold/30">
+                    <h2 class="text-2xl text-center mb-8 gold-text italic font-bold">Build Your Shahi Plan</h2>
+                    <div class="space-y-8">
+                        <div class="flex items-center justify-center">
+                            <button onclick="addCustomDay()" class="bg-nph-gold text-black px-8 py-3 rounded-full font-bold text-xs uppercase tracking-widest hover:bg-white transition-all">+ Add Event Day</button>
+                        </div>
+                        <div id="custom-root" class="space-y-6"></div>
+                        <div id="final-calc" class="hidden pt-10 border-t border-white/10">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+                                <div><label class="text-[10px] uppercase text-zinc-500 block mb-2">Master Video Editing</label>
+                                <select id="edit" onchange="finalCalc()" class="w-full bg-black border border-white/10 p-3 rounded-lg text-xs outline-none focus:border-nph-gold">
+                                    <option value="0" selected>No Editing</option>
+                                    <option value="5000">Editing Included (₹5k)</option>
+                                </select></div>
+                                <div><label class="text-[10px] uppercase text-zinc-500 block mb-2">Royal Albums</label>
+                                <select id="albums" onchange="finalCalc()" class="w-full bg-black border border-white/10 p-3 rounded-lg text-xs outline-none focus:border-nph-gold">
+                                    <option value="0">No Album</option>
+                                    <option value="5000">1 Royal Album (₹5k)</option>
+                                    <option value="10000">2 Royal Albums (₹10k)</option>
+                                </select></div>
+                            </div>
+                            <div class="p-8 bg-nph-gold/10 rounded-2xl border border-nph-gold/30 text-center cursor-pointer" onclick="openModal('Custom Build Plan', document.getElementById('total-val').innerText)">
+                                <p class="text-zinc-600 text-[10px] uppercase tracking-widest mb-1">Total Estimated Quote</p>
+                                <div class="text-6xl font-tenor gold-text font-bold">₹<span id="total-val">0</span></div>
+                                <p class="mt-4 text-nph-gold text-[10px] font-bold underline">SEND FULL PLAN TO WHATSAPP &rarr;</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+    
+        function addCustomDay() {
+            const root = document.getElementById('custom-root');
+            const count = root.children.length + 1;
+            const div = document.createElement('div');
+            div.className = "day-box";
+            div.innerHTML = `
+                <button onclick="removeThisDay(this)" class="absolute top-4 right-4 text-red-500/50 hover:text-red-500 transition"><i class="fa-solid fa-trash-can"></i></button>
+                <div class="flex flex-col gap-4 mb-6 border-b border-white/5 pb-4">
+                    <span class="gold-text text-sm font-bold tracking-widest uppercase day-title">Event Day ${count}</span>
+                    <div class="space-y-3">
+                        <select onchange="handleEventSelect(this)" class="w-full bg-black border border-zinc-800 p-3 rounded-xl text-xs outline-none text-zinc-300 focus:border-nph-gold">
+                            <option value="">Choose Event Type</option>
+                            <option>Haldi</option><option>Mehndi</option><option>Sangeet</option><option>Tilak</option>
+                            <option>Bhat</option><option>Engagement</option><option>Wedding</option><option>Reception</option>
+                            <option value="custom">Custom Name (Type below)</option>
+                        </select>
+                        <input type="text" placeholder="Enter Custom Event Name..." class="hidden w-full bg-zinc-900/50 border border-nph-gold/30 p-3 rounded-xl text-xs outline-none text-white focus:border-nph-gold">
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 lg:grid-cols-4 gap-3">
+                    <input type="checkbox" id="tr${Date.now()}" value="10000" onchange="finalCalc()" class="choice-input"><label for="tr${Date.now()}" class="choice-label">Traditional Photo</label>
+                    <input type="checkbox" id="st${Date.now()+1}" value="10000" onchange="finalCalc()" class="choice-input"><label for="st${Date.now()+1}" class="choice-label">Story Video</label>
+                    <input type="checkbox" id="ca${Date.now()+2}" value="12000" onchange="finalCalc()" class="choice-input"><label for="ca${Date.now()+2}" class="choice-label">Candid Photo</label>
+                    <input type="checkbox" id="ci${Date.now()+3}" value="12000" onchange="finalCalc()" class="choice-input"><label for="ci${Date.now()+3}" class="choice-label">Cinematic Video</label>
+                </div>
+                <div class="mt-4 pt-4 border-t border-white/5">
+                    <input type="checkbox" id="dr${Date.now()+4}" value="6000" onchange="finalCalc()" class="choice-input"><label for="dr${Date.now()+4}" class="choice-label border-dashed border-nph-gold/20">Add Drone Coverage (+₹6k)</label>
+                </div>
+            `;
+            root.appendChild(div);
+            document.getElementById('final-calc').classList.remove('hidden');
+            finalCalc();
+        }
+    
+        function removeThisDay(btn) {
+            btn.closest('.day-box').remove();
+            // Recalculate Serial Numbers
+            document.querySelectorAll('.day-box').forEach((day, i) => {
+                day.querySelector('.day-title').innerText = `Event Day ${i + 1}`;
+            });
+            finalCalc();
+            if(document.querySelectorAll('.day-box').length === 0) document.getElementById('final-calc').classList.add('hidden');
+        }
+    
+        function handleEventSelect(sel) {
+            const input = sel.nextElementSibling;
+            input.classList.toggle('hidden', sel.value !== 'custom');
+        }
+    
+        function finalCalc() {
+            let total = 0;
+            document.querySelectorAll('.day-box').forEach(day => {
+                day.querySelectorAll('input[type="checkbox"]:checked').forEach(cb => {
+                    total += parseInt(cb.value);
+                });
+            });
+            total += parseInt(document.getElementById('edit')?.value || 0);
+            total += parseInt(document.getElementById('albums')?.value || 0);
+            const display = document.getElementById('total-val');
+            if(display) display.innerText = total.toLocaleString();
+        }
+    
+        window.onload = () => switchMain('wedding', document.querySelector('.filter-btn'));
+    </script>
+</body>
+</html>

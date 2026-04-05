@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="hi" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Nakul Production House | Home</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tenor+Sans&family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: { extend: { colors: { nph: { gold: '#C5A059', dark: '#050505' } }, fontFamily: { 'tenor': ['Tenor Sans', 'serif'], 'jost': ['Jost', 'sans-serif'] } } }
+        }
+    </script>
+    <style>
+        body { font-family: 'Jost', sans-serif; background-color: #050505; color: #E0E0E0; overflow-x: hidden; }
+        h1, h2, h3, h4 { font-family: 'Tenor Sans', serif; letter-spacing: 0.15em; text-transform: uppercase; }
+        .gold-grad { background: linear-gradient(135deg, #C5A059 0%, #F1D9A7 50%, #C5A059 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        
+        /* Photo Hero */
+        .hero-photo { 
+            position: relative; height: 100vh; width: 100%; 
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(5,5,5,1)), url('assets/photos/home/hero_bg.jpg');
+            background-size: cover; background-position: center;
+            display: flex; align-items: center; justify-content: center;
+        }
+
+        .reveal { opacity: 0; transform: translateY(30px); transition: 1s ease-out; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        /* Package Preview Cards */
+        .pkg-mini-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(197, 160, 89, 0.2); border-radius: 20px; padding: 25px; transition: 0.4s; }
+        .pkg-mini-card:hover { border-color: #C5A059; background: rgba(197, 160, 89, 0.05); transform: translateY(-5px); }
+
+        /* Stylish Portfolio */
+        .port-grid-item { position: relative; border-radius: 15px; overflow: hidden; height: 350px; cursor: pointer; }
+        .port-grid-item img { width: 100%; height: 100%; object-fit: cover; transition: 0.6s; }
+        .port-grid-item:hover img { transform: scale(1.1); filter: brightness(0.7); }
+        .port-overlay { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; opacity: 0; transition: 0.4s; background: rgba(0,0,0,0.4); }
+        .port-grid-item:hover .port-overlay { opacity: 1; }
+
+        .btn-shahi { background: #C5A059; color: #000; padding: 14px 35px; border-radius: 50px; font-weight: 700; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; transition: 0.4s; display: inline-block; }
+        .btn-shahi:hover { background: #fff; transform: scale(1.05); }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div id="nav-placeholder"></div>
+
+    <section class="hero-photo">
+        <div class="text-center px-6 reveal">
+            <h4 class="text-nph-gold tracking-[0.8em] text-[10px] mb-4 font-bold uppercase">The Art of Storytelling</h4>
+            <h1 class="text-5xl md:text-8xl text-white mb-8">NPH <span class="italic font-light">Cinematic Studio</span></h1>
+            <div class="flex gap-4 justify-center">
+                <a href="portfolio.html" class="btn-shahi">View Gallery</a>
+                <a href="packages.html" class="px-8 py-3 rounded-full border border-white/20 text-white font-bold text-[10px] tracking-widest uppercase hover:bg-white hover:text-black transition">Packages</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-32 px-6">
+        <div class="max-w-[1200px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+            <div class="reveal relative">
+                <img src="assets/photos/studio/founder.jpg" class="rounded-[2.5rem] border border-nph-gold/20 shadow-2xl" alt="Nakul Owner">
+                <div class="absolute -bottom-6 -right-6 bg-nph-gold text-black p-6 rounded-2xl hidden md:block">
+                    <h5 class="text-sm font-bold">5+ Years</h5>
+                    <p class="text-[9px] uppercase tracking-widest">Experience</p>
+                </div>
+            </div>
+            <div class="reveal">
+                <h4 class="text-nph-gold text-xs font-bold tracking-[0.5em] mb-4">Behind the Lens</h4>
+                <h2 class="text-3xl md:text-5xl text-white mb-6">The Soul of <span class="gold-grad">NPH Studio</span></h2>
+                <p class="text-zinc-400 leading-relaxed mb-8">Nakul Production House is the vision of Nakul, dedicated to capturing the raw emotions of your most special day. We believe every couple has a unique story that deserves to be told with imperial grandeur.</p>
+                <a href="about.html" class="btn-shahi">Our Full Story →</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-32 bg-white/[0.02]">
+        <div class="max-w-[1400px] mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl text-white">Core <span class="gold-grad">Artistry</span></h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="reveal p-10 bg-zinc-900/50 rounded-3xl border border-white/5 text-center cursor-pointer hover:border-nph-gold/30 transition" onclick="location.href='services.html'">
+                    <i class="fa-solid fa-camera-retro text-3xl text-nph-gold mb-6"></i>
+                    <h3 class="text-xl text-white mb-4">Candid Art</h3>
+                    <p class="text-zinc-500 text-sm">Capturing emotions when you least expect it.</p>
+                </div>
+                <div class="reveal p-10 bg-zinc-900/50 rounded-3xl border border-white/5 text-center cursor-pointer hover:border-nph-gold/30 transition" onclick="location.href='services.html'">
+                    <i class="fa-solid fa-film text-3xl text-nph-gold mb-6"></i>
+                    <h3 class="text-xl text-white mb-4">Wedding Cinema</h3>
+                    <p class="text-zinc-500 text-sm">4K films that feel like a Bollywood movie.</p>
+                </div>
+                <div class="reveal p-10 bg-zinc-900/50 rounded-3xl border border-white/5 text-center cursor-pointer hover:border-nph-gold/30 transition" onclick="location.href='services.html'">
+                    <i class="fa-solid fa-plane-up text-3xl text-nph-gold mb-6"></i>
+                    <h3 class="text-xl text-white mb-4">Drone View</h3>
+                    <p class="text-zinc-500 text-sm">Grand aerial perspectives of your venue.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-32 px-6">
+        <div class="text-center mb-16 reveal">
+            <h2 class="text-4xl text-white mb-4 font-bold">The <span class="gold-grad italic">Galleria</span></h2>
+            <p class="text-zinc-500 text-xs tracking-widest">Click photos to explore portfolio page</p>
+        </div>
+        <div class="max-w-[1600px] mx-auto grid grid-cols-2 lg:grid-cols-4 gap-4">
+            <div class="port-grid-item reveal" onclick="location.href='portfolio.html'">
+                <img src="assets\photos\portfolio\engagement\1 (1).jpg">
+                <div class="port-overlay"><span class="text-white font-bold text-xs border border-white px-4 py-2 rounded-full uppercase">View Full Portfolio</span></div>
+            </div>
+            <div class="port-grid-item reveal" onclick="location.href='portfolio.html'">
+                <img src="assets\photos\portfolio\wedding\1 (1).jpg">
+                <div class="port-overlay"><span class="text-white font-bold text-xs border border-white px-4 py-2 rounded-full uppercase">View Full Portfolio</span></div>
+            </div>
+            <div class="port-grid-item reveal" onclick="location.href='portfolio.html'">
+                <img src="assets\photos\portfolio\haldi\1 (1).jpg">
+                <div class="port-overlay"><span class="text-white font-bold text-xs border border-white px-4 py-2 rounded-full uppercase">View Full Portfolio</span></div>
+            </div>
+            <div class="port-grid-item reveal" onclick="location.href='portfolio.html'">
+                <img src="assets\photos\portfolio\mehndi\1 (1).jpg">
+                <div class="port-overlay"><span class="text-white font-bold text-xs border border-white px-4 py-2 rounded-full uppercase">View Full Portfolio</span></div>
+            </div>
+            
+        </div>
+    </section>
+
+    <section class="py-32 bg-zinc-900/30">
+        <div class="max-w-[1400px] mx-auto px-6">
+            <div class="text-center mb-20 reveal">
+                <h2 class="text-4xl text-white mb-4">Investment <span class="gold-grad">Plans</span></h2>
+                <p class="text-zinc-500 text-xs tracking-widest">Starting from our most basic royal options</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="pkg-mini-card reveal" onclick="location.href='packages.html?cat=wedding'">
+                    <h4 class="text-nph-gold text-[10px] font-bold mb-2 uppercase tracking-widest">Wedding Basic</h4>
+                    <h3 class="text-2xl text-white mb-4">₹ 15,000</h3>
+                    <ul class="text-zinc-500 text-xs space-y-2 mb-6">
+                        <li>• 1 Photographer + 1 Videographer</li>
+                        <li>• 30 Sheet Digital Album</li>
+                    </ul>
+                    <span class="text-white text-[10px] font-bold underline">VIEW FULL WEDDING PLANS</span>
+                </div>
+                <div class="pkg-mini-card reveal" onclick="location.href='packages.html?cat=prewedding'">
+                    <h4 class="text-nph-gold text-[10px] font-bold mb-2 uppercase tracking-widest">Pre-Wedding (Delhi)</h4>
+                    <h3 class="text-2xl text-white mb-4">₹ 10,000</h3>
+                    <ul class="text-zinc-500 text-xs space-y-2 mb-6">
+                        <li>• Cinematic Video + Drone</li>
+                        <li>• 30 Edited Royal Photos</li>
+                    </ul>
+                    <span class="text-white text-[10px] font-bold underline">VIEW SHOOT LOCATIONS</span>
+                </div>
+                <div class="pkg-mini-card reveal" onclick="location.href='packages.html?cat=destination'">
+                    <h4 class="text-nph-gold text-[10px] font-bold mb-2 uppercase tracking-widest">Destination Basic</h4>
+                    <h3 class="text-2xl text-white mb-4">₹ 35,000</h3>
+                    <ul class="text-zinc-500 text-xs space-y-2 mb-6">
+                        <li>• 1+1 Team Coverage</li>
+                        <li>• Full Day Traditional Mastery</li>
+                    </ul>
+                    <span class="text-white text-[10px] font-bold underline">VIEW DESTINATION PLANS</span>
+                </div>
+            </div>
+            <div class="text-center mt-12">
+                <a href="packages.html?cat=custom" class="text-nph-gold text-[11px] font-bold uppercase tracking-[0.3em] border border-nph-gold px-8 py-3 rounded-full hover:bg-nph-gold hover:text-black transition">Customise Your Own Plan &rarr;</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-32 px-6">
+        <div class="max-w-[1200px] mx-auto text-center reveal">
+            <h2 class="text-3xl md:text-5xl text-white mb-16">Kind <span class="gold-grad italic">Words</span></h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="p-8 bg-white/[0.02] rounded-3xl border border-white/5">
+                    <p class="text-zinc-400 italic mb-6">"Nakul and his team made our wedding cinematic! Truly Bollywood level quality."</p>
+                    <h4 class="text-white text-[10px] font-bold uppercase tracking-widest">- Aman & Priya</h4>
+                </div>
+                <div class="p-8 bg-white/[0.02] rounded-3xl border border-white/5">
+                    <p class="text-zinc-400 italic mb-6">"Natural and candid shots are just amazing. Highly professional studio in Delhi."</p>
+                    <h4 class="text-white text-[10px] font-bold uppercase tracking-widest">- Simran Kaur</h4>
+                </div>
+                <div class="p-8 bg-white/[0.02] rounded-3xl border border-white/5">
+                    <p class="text-zinc-400 italic mb-6">"Best travel experience for our destination shoot. The 4K drone shots were mind-blowing."</p>
+                    <h4 class="text-white text-[10px] font-bold uppercase tracking-widest">- Ankit Sharma</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-32 px-6 bg-white/[0.01] border-t border-white/5">
+        <div class="max-w-[1300px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div class="reveal">
+                <h2 class="text-4xl text-white mb-10 font-tenor">Visit Our <br> <span class="gold-grad">Royal Studio</span></h2>
+                <div class="space-y-6">
+                    <div class="flex items-center gap-6 text-zinc-400"><i class="fa-solid fa-location-dot text-nph-gold text-2xl"></i><p>Nihal Vihar, Nangloi, New Delhi, India</p></div>
+                    <div class="flex items-center gap-6 text-zinc-400"><i class="fa-solid fa-phone-volume text-nph-gold text-2xl"></i><p>+91 8130126856</p></div>
+                    <div class="flex items-center gap-6 text-zinc-400"><i class="fa-brands fa-whatsapp text-green-500 text-2xl"></i><p>Instant WhatsApp Chat</p></div>
+                </div>
+                <div class="mt-12">
+                    <a href="contact.html" class="glass-btn">Send a Message</a>
+                </div>
+            </div>
+            <div class="reveal">
+                <iframe 
+  src="https://www.google.com/maps?q=Nihal+Vihar+Nangloi+Delhi&output=embed" 
+  width="100%" 
+  height="400" 
+  style="border:0;" 
+  allowfullscreen="" 
+  loading="lazy">
+</iframe>
+            </div>
+        </div>
+    </section>
+
+    <div id="footer-placeholder"></div>
+
+    <script src="components.js"></script>
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>

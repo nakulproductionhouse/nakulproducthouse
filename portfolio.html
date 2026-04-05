@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="hi" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <title>Portfolio | Nakul Production House - Imperial Gallery</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tenor+Sans&family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: { nph: { gold: '#C5A059', dark: '#050505' } },
+                    fontFamily: { 'tenor': ['Tenor Sans', 'serif'], 'jost': ['Jost', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Jost', sans-serif; background-color: #050505; color: #E0E0E0; overflow-x: hidden; }
+        h1, h2 { font-family: 'Tenor Sans', serif; letter-spacing: 0.15em; text-transform: uppercase; }
+        
+        /* Water Glass Style for Filter Bar */
+        .royal-glass { 
+            background: rgba(255, 255, 255, 0.03); 
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.1); 
+        }
+
+        .compact-filter-nav { height: 50px; } 
+
+        /* Lightbox & Smooth Blur */
+        #lightbox {
+            display: none; position: fixed; inset: 0; background: rgba(0, 0, 0, 0.85); 
+            z-index: 100000; justify-content: center; align-items: center; padding: 10px;
+            opacity: 0; transition: opacity 0.4s ease;
+        }
+        #lightbox.active { display: flex; opacity: 1; }
+        .lightbox-wrapper { width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; overflow: auto; touch-action: pinch-zoom; }
+        #lightbox-img { max-height: 92vh; max-width: 95%; transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); border-radius: 4px; }
+        
+        body.lb-open #main-content { filter: blur(15px); transition: filter 0.4s ease; }
+
+        /* Gallery Item Styling */
+        .photo-card {
+            break-inside: avoid; margin-bottom: 1.5rem; position: relative;
+            overflow: hidden; border-radius: 12px; cursor: pointer;
+            border: 1px solid rgba(197, 160, 89, 0.1); transition: all 0.5s ease;
+        }
+        .photo-card:hover { border-color: #C5A059; transform: translateY(-5px); }
+        .photo-card img { width: 100%; display: block; transition: transform 0.8s ease; }
+        
+        .cat-tag {
+            position: absolute; bottom: 12px; left: 12px;
+            background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(8px);
+            padding: 4px 12px; border-radius: 6px; border: 1px solid rgba(197, 160, 89, 0.3);
+            color: #E2C792; font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;
+        }
+
+        /* Tabs styling */
+        .filter-btn { transition: all 0.3s ease; opacity: 0.5; font-size: 11px; font-weight: 600; color: white; border-bottom: 2px solid transparent; }
+        .filter-btn.active { opacity: 1; color: #C5A059; border-bottom-color: #C5A059; }
+
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div id="nav-placeholder"></div>
+
+    <div id="main-content">
+        <header class="pt-44 pb-8 text-center px-4">
+            <h1 class="text-4xl md:text-7xl font-tenor text-white mb-2 uppercase">The Portfolio</h1>
+            <div class="flex items-center justify-center gap-4 opacity-40">
+                <div class="h-[1px] w-12 bg-nph-gold"></div>
+                <p class="text-nph-gold uppercase tracking-[0.5em] text-[10px]">Imperial Visuals</p>
+                <div class="h-[1px] w-12 bg-nph-gold"></div>
+            </div>
+        </header>
+
+        <div class="sticky top-[85px] z-[900] px-4 md:px-10 mb-12">
+            <div class="max-w-5xl mx-auto royal-glass rounded-full px-8 compact-filter-nav flex items-center overflow-x-auto no-scrollbar">
+                <div class="flex justify-start md:justify-center items-center w-full gap-x-8 md:gap-x-12 whitespace-nowrap">
+                    <button class="filter-btn active uppercase" onclick="changeFilter('all', this)">All Works</button>
+                    <button class="filter-btn uppercase" onclick="changeFilter('wedding', this)">Wedding</button>
+                    <button class="filter-btn uppercase" onclick="changeFilter('engagement', this)">Engagement</button>
+                    <button class="filter-btn uppercase" onclick="changeFilter('haldi', this)">Haldi</button>
+                    <button class="filter-btn uppercase" onclick="changeFilter('mehndi', this)">Mehndi</button>
+                    <button class="filter-btn uppercase" onclick="changeFilter('reception', this)">Reception</button>
+                </div>
+            </div>
+        </div>
+
+        <main class="max-w-[1750px] mx-auto px-4 md:px-10 py-4">
+            <div id="gallery" class="columns-2 md:columns-3 lg:columns-4 gap-6 space-y-6">
+                </div>
+            <div id="loader" class="text-center text-zinc-800 mt-20 text-[10px] tracking-[0.6em] uppercase">Opening The Imperial Vault...</div>
+        </main>
+    </div>
+
+    <div id="lightbox" onclick="closeLightbox()">
+        <div class="lightbox-wrapper">
+            <img id="lightbox-img" src="" onclick="event.stopPropagation()" alt="Imperial Shot">
+        </div>
+    </div>
+
+    <div id="footer-placeholder"></div>
+
+    <script src="components.js"></script>
+    <script>
+        // Folder Configuration
+        const categories = { 'wedding': 50, 'engagement': 30, 'haldi': 30, 'mehndi': 30, 'reception': 30 };
+        const gallery = document.getElementById('gallery');
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+
+        // Dynamic Image Fetcher
+        async function loadGallery(filter = 'all') {
+            gallery.innerHTML = '';
+            document.getElementById('loader').style.display = 'block';
+            
+            let catsToLoad = filter === 'all' ? Object.keys(categories) : [filter];
+
+            for (const cat of catsToLoad) {
+                for (let i = 1; i <= categories[cat]; i++) {
+                    const url = `assets/photos/portfolio/${cat}/1 (${i}).jpg`;
+                    
+                    const check = await new Promise(r => {
+                        const img = new Image();
+                        img.onload = () => r(true);
+                        img.onerror = () => r(false);
+                        img.src = url;
+                    });
+
+                    if (check) {
+                        const card = document.createElement('div');
+                        card.className = 'photo-card';
+                        card.innerHTML = `
+                            <img src="${url}" loading="lazy" onclick="openLightbox('${url}')">
+                            <div class="cat-tag">${cat}</div>
+                        `;
+                        gallery.appendChild(card);
+                    } else if (filter !== 'all') {
+                        break; // Stop loop if specific cat has no more images
+                    }
+                }
+            }
+            document.getElementById('loader').style.display = 'none';
+        }
+
+        // Tab Switcher Logic
+        function changeFilter(cat, btn) {
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            loadGallery(cat);
+        }
+
+        // Lightbox Zoom & Interaction
+        function openLightbox(src) {
+            lightboxImg.src = src;
+            lightbox.classList.add('active');
+            document.body.classList.add('lb-open');
+            document.body.style.overflow = 'hidden';
+            window.history.pushState({lb:1}, "");
+        }
+
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+            document.body.classList.remove('lb-open');
+            document.body.style.overflow = 'auto';
+            if(window.history.state?.lb) window.history.back();
+        }
+
+        window.onpopstate = () => { if(document.body.classList.contains('lb-open')) closeLightbox(); };
+
+        // Initial Load
+        window.onload = () => loadGallery('all');
+    </script>
+</body>
+</html>
